@@ -17,7 +17,7 @@ Users will be able to register account, log in in order to see gift suggestions 
 ## Post MVP
 * Background picture will be auto-change depends on the current weather of the built-in calendar. 
 * Image of gift list will be able to upload from users' own local server via pc or phone instead of restrictly pasting image url from other hosts.
-* Users will be able to do keyword search for the Bible verse in typical topic. 
+* Users will be able to do keyword search for the Bible verse they desire instantly.
 
 ## Feature List
 * 7 React Components:
