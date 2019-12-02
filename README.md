@@ -24,6 +24,6 @@ Users will be able to register account, log in in order to see gift suggestions 
   * About Us - a page to tell users our goal
   * Join Us- allow users to contact us who are interested in joining my team.
   
-
+## ERD
   ![ERD](https://github.com/sheetazita/Good-Words/blob/master/GoodWords_ERD.png)
 
