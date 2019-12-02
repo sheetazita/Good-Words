@@ -10,4 +10,5 @@ Backend data for the Bible verses and the gift suggestions will be hard coded us
 Users will be able to register account, log in in order to see gift suggestions and create, revise, or delete their own one.  Users will be able to generate encouraging, inspiring Bible verse from a button without having to register or log in an account.  
 
 ## Post MVP
-Background pictures will be auto-change based on the current weather of each  
+* Background picture will be auto-change depends on the current weather of the built-in calendar.  
+
