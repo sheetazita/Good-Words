@@ -54,8 +54,9 @@ Backend data for the Bible verses and the gift suggestions will be hard coded us
 ## Routes
 * home: '/'
 * user: '/:userid'
-* gift details: '/:userid/gift-details'
-* create gift form: '/:userid/create-gift'
+* gift list: '/userid/bibleVerseId/giftList'
+* gift details: '/:userid/bibleVerseId//giftListId/gift-details'
+* create gift form: '/:userid/bibleVerseId/create-gift'
 
 ## Timeframes
 | Component          | Priority | Estimated Time|
