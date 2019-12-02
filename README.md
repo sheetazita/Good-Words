@@ -14,3 +14,13 @@ Users will be able to register account, log in in order to see gift suggestions 
 * Image of gift list will be able to upload from users' own local server via pc or phone instead of restrictly pasting image url from other hosts.
 * Users will be able to do keyword search for the Bible verse in typical topic. 
 
+## Feature List
+* 7 React Components:
+  * Register/Login page
+  * Bible verse section
+  * Gift suggestion section
+  * Gift details page
+  * Create gift form
+  * About Us
+  * Join Us
+
