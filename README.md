@@ -57,6 +57,8 @@ Backend data for the Bible verses and the gift suggestions will be hard coded us
 * gift list: '/userid/bibleVerseId/giftList'
 * gift details: '/:userid/bibleVerseId//giftListId/gift-details'
 * create gift form: '/:userid/bibleVerseId/create-gift'
+* about us: '/about-us'
+* join us: '/join-us'
 
 ## Timeframes
 | Component          | Priority | Estimated Time|
