@@ -26,4 +26,17 @@ Users will be able to register account, log in in order to see gift suggestions 
   
 ## ERD
   ![ERD](https://github.com/sheetazita/Good-Words/blob/master/GoodWords_ERD.png)
+  
+## Wireframes
+ ### Home Desktop View
+  ![ERD](https://github.com/sheetazita/Good-Words/blob/master/Desktop%20View%20-%20Home.png)
+ ### Home Mobile View
+  ![ERD](https://github.com/sheetazita/Good-Words/blob/master/Home%20Mobile.png)
+ ### Create Gift Form Desktop View
+  ![ERD](https://github.com/sheetazita/Good-Words/blob/master/Home%20Desktop%20Create%20Gift%20Form.png)
+ ### Create Gift Form Mobile View 
+  ![ERD](https://github.com/sheetazita/Good-Words/blob/master/Gift%20Create%20Mobile.png)
+ ### About Us
+  ![ERD](https://github.com/sheetazita/Good-Words/blob/master/About%20Us.png)
+
 
