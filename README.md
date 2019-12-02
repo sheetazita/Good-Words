@@ -38,5 +38,29 @@ Users will be able to register account, log in in order to see gift suggestions 
   ![ERD](https://github.com/sheetazita/Good-Words/blob/master/Gift%20Create%20Mobile.png)
  ### About Us
   ![ERD](https://github.com/sheetazita/Good-Words/blob/master/About%20Us.png)
+  
+## API Endpoint - 3 models
+* User Model
+* Bible verses model
+* Gift idea model
+
+## Routes
+* home: '/'
+* user: '/:userid'
+* gift details: '/:userid/gift-details'
+* create gift form: '/:userid/create-gift'
+
+## Timeframes
+| Component          | Priority | Estimated Time|
+| ------------------ | ---------|---------------|
+| Working with API   | High     |  3 hrs        |
+| User auth          | High     |  5 hrs        |
+| Bible verse section| High     |  3 hrs        |
+| Gift Suggestion    | High     |  3 hrs        |
+| Create Gift form   | High     |  5 hrs        | 
+| Gift details       | High     |  3 hrs        |
+| About Us           | Low      |  1 hrs        |
+| Join Us            | Low      |  1 hrs        |
+| CSS                | Low      |  3 hrs        |
 
 
