@@ -16,11 +16,11 @@ Users will be able to register account, log in in order to see gift suggestions 
 
 ## Feature List
 * 7 React Components:
-  * Register/Login page: allows users to register or log in their account;
-  * Bible verse section: allow users to get Bible verse from the generate button;
-  * Gift suggestion section: provide users gift ideas relevant to the verse they generate;
-  * Gift details page: display details of each gift: name, image, price, and purchase link;
-  * Create gift form: allow login users to put up their own gift ideas;
-  * About Us: a page to tell users our goal
-  * Join Us: allow users to contact us who are interested in joining my team.
+  * Register/Login page - allows users to register or log in their account;
+  * Bible verse section - allow users to get Bible verse from the generate button;
+  * Gift suggestion section - provide users gift ideas relevant to the verse they generate;
+  * Gift details page - display details of each gift: name, image, price, and purchase link;
+  * Create gift form - allow login users to put up their own gift ideas;
+  * About Us - a page to tell users our goal
+  * Join Us- allow users to contact us who are interested in joining my team.
 
