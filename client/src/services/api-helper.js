@@ -35,11 +35,23 @@ export const verifyUser = async () => {
 //   return resp.data
 // }
 
-export const readAllVerses = async () => {
-  const resp = await api.get('/topics')
-  const topics = resp.data
-  // console.log(topics)
-  return topics
+// export const readAllTopics = async () => {
+//   const resp = await api.get('/topics')
+//   const topics = resp.data
+//   // console.log(topics)
+//   return topics
+// }
+
+export const readRandomVerse = async () => {
+  const resp = await api.get('/verses/random')
+  const verse = resp.data
+  return verse
+}
+
+export const readAllGifts = async (topic_id) => {
+  const resp = await api.get(`/topics/${topic_id}/gifts`)
+  const gifts = resp.data
+  return gifts
 }
 
 // export const updateTeacher = async (id, data) => {

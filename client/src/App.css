@@ -1,22 +1,61 @@
-.App {
+.app {
   text-align: center;
+  background-image: url('./images/backgroundone.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.App-logo {
-  height: 40vmin;
+header{
+height: 900px;
+border: 3px solid black;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.loginSection{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border: 1px solid white;
 }
 
-.App-link {
-  color: #09d3ac;
+.logo{
+  width: 6%;
+}
+
+.accountLogo{
+  width: 15%;
+}
+
+.bible-container{
+  /* border: 1px solid red; */
+  position: absolute;
+  color: white;
+  width: 100%;
+}
+
+.auth-container{
+  margin-top: 150px;
+  border: 1px solid white;
+  border-radius: 10px;
+  /* width: 70%; */
+  /* border: 3px solid pink; */
+}
+
+.giftListsContainer{
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  background: #F0F0F0;
+}
+
+.giftList{
+  text-align: center;
+  /* border: 1px solid blue; */
+  margin: 12px 10px;
+  width: 25%;
+  height: 350px;
+  /* background: white; */
+}
+
+.giftListImg{
+  width: 77%;
+  height: 290px;
+  object-fit: cover;
 }

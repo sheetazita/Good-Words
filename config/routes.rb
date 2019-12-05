@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   post '/auth/login', to: 'authentication#login'
   get '/auth/verify', to: 'authentication#verify'
+  get '/verses/random', to: 'verses#random'
   resources :users
   resources :topics do
     resources :verses

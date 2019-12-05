@@ -1,31 +1,32 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-
-import BibleVerse from './components/BibleVerse';
 // import TeacherPage from './components/TeacherPage';
 // import CreateTeacher from './components/CreateTeacher'
-import Login from './components/Login'
+// import Login from './components/Login'
 import Register from './components/Register'
 
 import {
   // createTeacher,
-  readAllVerses,
+  readRandomVerse,
   // updateTeacher,
   // destroyTeacher,
   loginUser,
   registerUser,
-  verifyUser
+  verifyUser,
+  readAllGifts
 } from './services/api-helper'
 
 import './App.css';
 import Header from './components/Header';
+import GiftLists from './components/GiftLists';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      topics: [],
+      verse: "",
+      gifts: [],
       // teacherForm: {
       //   name: "",
       //   photo: ""
@@ -39,20 +40,34 @@ class App extends Component {
     };
   }
 
+  refreshQuote = async () => {
+    const verse = await readRandomVerse();
+    this.setState({ verse })
+  }
+
   async componentDidMount() {
-    this.getTopics();
+    await this.refreshQuote();
+    const gifts = await readAllGifts(this.state.verse.topic_id);
+    this.setState({ gifts })
     const currentUser = await verifyUser();
     if (currentUser) {
       this.setState({ currentUser })
     }
   }
 
-  getTopics = async () => {
-    const topics = await readAllVerses();
-    this.setState({
-      topics
-    })
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.state.verse.topic_id !== prevState.verse.topic_id) {
+      const gifts = await readAllGifts(this.state.verse.topic_id);
+      this.setState({ gifts });
+    }
   }
+
+  // getTopics = async () => {
+  //   const topics = await readAllTopics();
+  //   this.setState({
+  //     topics
+  //   })
+  // }
 
   // newTeacher = async (e) => {
   //   e.preventDefault();
@@ -121,12 +136,14 @@ class App extends Component {
   handleLogin = async () => {
     const currentUser = await loginUser(this.state.authFormData);
     this.setState({ currentUser });
+    this.props.history.push("/")
   }
 
   handleRegister = async (e) => {
     e.preventDefault();
     const currentUser = await registerUser(this.state.authFormData);
     this.setState({ currentUser });
+    this.props.history.push("/")
   }
 
   handleLogout = () => {
@@ -147,30 +164,49 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state.topics)
     return (
-      <div className="App" >
+
+      <div className="app" >
         <Header
+          verse={this.state.verse}
+          refreshQuote={this.refreshQuote}
+          handleLogin={this.handleLogin}
           handleLoginButton={this.handleLoginButton}
           handleLogout={this.handleLogout}
+          handleChange={this.authHandleChange}
           currentUser={this.state.currentUser}
+          formData={this.state.authFormData}
         />
-        <Route exact path="/login" render={() => (
-          <Login
-            handleLogin={this.handleLogin}
-            handleChange={this.authHandleChange}
-            formData={this.state.authFormData} />)} />
+
         <Route exact path="/register" render={() => (
           <Register
             handleRegister={this.handleRegister}
             handleChange={this.authHandleChange}
-            formData={this.state.authFormData} />)} />
+            formData={this.state.authFormData}
+            
+         />)}/>
 
-        <Route
-          exact path="/"
-          render={() => (
-            <BibleVerse
-              topics={this.state.topics} />)} />
+        {
+          this.state.currentUser ?
+            <Route
+              exact path="/"
+              render={() => (<GiftLists gifts={this.state.gifts} />)}/>
+            :
+            <></>
+        }
+
+        {/* <div>
+            <Route
+              exact path="/"
+              render={() => (
+                <div>
+                  <Header
+                    verse={this.state.verse}
+                    refreshQuote={this.refreshQuote} />
+                </div>
+              )}
+            />
+          </div> */}
         {/* <Route
           path="/new/teacher"
           render={() => (
@@ -194,6 +230,8 @@ class App extends Component {
               deleteTeacher={this.deleteTeacher} />
           }}
         /> */}
+
+
       </div>
     );
   }
