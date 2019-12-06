@@ -1,41 +1,101 @@
+* {
+  scroll-behavior: smooth;
+}
+
 .app {
   text-align: center;
-  background-image: url('./images/backgroundone.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
 }
 
 header{
-height: 900px;
-border: 3px solid black;
-}
-
-.loginSection{
-  display: flex;
-  border: 1px solid white;
+  background-image: url('./images/backgroundone.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 900px;
 }
 
 .logo{
   width: 6%;
+  align-self: center;
+  margin-top: 40px;
+  /* border: 1px solid pink; */
 }
 
-.accountLogo{
-  width: 15%;
-}
-
-.bible-container{
-  /* border: 1px solid red; */
+.logOutLogo{
+  width: 4%;
+  top: 40px;
+  right: 50px;
   position: absolute;
+}
+
+.greeting{
+  margin-top: 50px;
   color: white;
-  width: 100%;
 }
 
 .auth-container{
-  margin-top: 150px;
-  border: 1px solid white;
+  margin-top: 100px;
+  /* border: 1px solid white; */
   border-radius: 10px;
-  /* width: 70%; */
-  /* border: 3px solid pink; */
+  color: white;
+}
+
+.bible-container-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bible-container{
+  width: 100%;
+  margin: auto;
+  /* border: 1px solid white; */
+}
+
+.bible-verse{
+  width: 55%;
+  height: 300px;
+  color: white;
+  margin: 20px auto;
+  padding: 20px 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  background:rgba(255,255,255, 0.1);
+  border-radius: 35px;
+}
+
+.bible-container h1{
+  font-size: 53px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+}
+
+.bible-container p{
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  margin-top: -10px;
+}
+
+.bible-container button{
+  width:10%;
+  height: 60px;
+  margin-top: -10px;
+  background: #56456E;
+  color: white;
+  border: 1px solid #56456E;
+  border-radius: 60px;
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+}
+
+.downArrow{
+  margin-bottom: -560px;
+  width: 6%;
+  /* border: 1px solid red; */
 }
 
 .giftListsContainer{
@@ -43,6 +103,13 @@ border: 3px solid black;
   display: flex;
   justify-content: center;
   background: #F0F0F0;
+}
+
+.giftListsContainer h1{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 22px;
+  color: black;
 }
 
 .giftList{
@@ -59,3 +126,22 @@ border: 3px solid black;
   height: 290px;
   object-fit: cover;
 }
+
+.addGiftList{
+  border: 0.5px solid black;
+  text-align: center;
+  margin: 12px 10px;
+  width: 25%;
+  height: 350px;
+  background: white;
+}
+
+.plus{
+  position: relative;
+  top: 100px;
+  font-size: 80px;
+  color: #707070;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+}
+

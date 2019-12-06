@@ -36,8 +36,15 @@ class App extends Component {
         username: "",
         email: "",
         password: ""
-      }
+      },
+      login: true,
     };
+  }
+  
+  toggleLogin = () => {
+    this.setState(prevState => ({
+      login:!prevState.login
+    }))
   }
 
   refreshQuote = async () => {
@@ -132,7 +139,7 @@ class App extends Component {
   handleLoginButton = () => {
     this.props.history.push("/login")
   }
-
+  
   handleLogin = async () => {
     const currentUser = await loginUser(this.state.authFormData);
     this.setState({ currentUser });
@@ -176,24 +183,19 @@ class App extends Component {
           handleChange={this.authHandleChange}
           currentUser={this.state.currentUser}
           formData={this.state.authFormData}
+          toggleLogin={this.toggleLogin}
+          login={this.state.login}
+          handleRegister={this.handleRegister}
         />
-
-        <Route exact path="/register" render={() => (
-          <Register
-            handleRegister={this.handleRegister}
-            handleChange={this.authHandleChange}
-            formData={this.state.authFormData}
-            
-         />)}/>
-
-        {
-          this.state.currentUser ?
+ {/* -------------- If logged in, show gift lists ------------------ */}
+        {/* {
+          this.state.currentUser ? */}
             <Route
               exact path="/"
-              render={() => (<GiftLists gifts={this.state.gifts} />)}/>
+              render={() => (<GiftLists gifts={this.state.gifts} />)} />
             :
             <></>
-        }
+        {/* } */}
 
         {/* <div>
             <Route
