@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-// import TeacherPage from './components/TeacherPage';
-// import CreateTeacher from './components/CreateTeacher'
+import GiftDetails from './components/GiftDetails';
+import CreateGift from './components/CreateGift'
+import Footer from './components/Footer';
 // import Login from './components/Login'
-import Register from './components/Register'
+// import Register from './components/Register'
 
 import {
-  // createTeacher,
+  createGift,
   readRandomVerse,
-  // updateTeacher,
-  // destroyTeacher,
+  // updateGift,
+  // destroyGift,
   loginUser,
   registerUser,
   verifyUser,
-  readAllGifts
+  readAllGifts,
 } from './services/api-helper'
 
 import './App.css';
@@ -27,10 +28,12 @@ class App extends Component {
     this.state = {
       verse: "",
       gifts: [],
-      // teacherForm: {
-      //   name: "",
-      //   photo: ""
-      // },
+      giftForm: {
+        name: "",
+        image: "",
+        price: "",
+        product_link: ""
+      },
       currentUser: null,
       authFormData: {
         username: "",
@@ -40,10 +43,10 @@ class App extends Component {
       login: true,
     };
   }
-  
+
   toggleLogin = () => {
     this.setState(prevState => ({
-      login:!prevState.login
+      login: !prevState.login
     }))
   }
 
@@ -55,7 +58,14 @@ class App extends Component {
   async componentDidMount() {
     await this.refreshQuote();
     const gifts = await readAllGifts(this.state.verse.topic_id);
-    this.setState({ gifts })
+    this.setState({ gifts });
+
+    // const gift = await readGift(this.state.id)
+    // this.setState({
+    //   gift
+    // })
+    // console.log(gift)
+
     const currentUser = await verifyUser();
     if (currentUser) {
       this.setState({ currentUser })
@@ -69,67 +79,64 @@ class App extends Component {
     }
   }
 
-  // getTopics = async () => {
-  //   const topics = await readAllTopics();
-  //   this.setState({
-  //     topics
-  //   })
-  // }
+  newGift = async (e) => {
+    e.preventDefault();
+    const gift = await createGift(this.state.giftForm);
+    this.setState(prevState => ({
+      gifts: [...prevState.gifts, gift],
+      giftForm: {
+        name: "",
+        image: "",
+        price: "",
+        product_link: ""
+      }
+    }))
+  }
 
-  // newTeacher = async (e) => {
-  //   e.preventDefault();
-  //   const teacher = await createTeacher(this.state.teacherForm);
-  //   this.setState(prevState => ({
-  //     teachers: [...prevState.teachers, teacher],
-  //     teacherForm: {
-  //       name: "",
-  //       photo: ""
-  //     }
-  //   }))
-  // }
-
-  // editTeacher = async () => {
-  //   const { teacherForm } = this.state
-  //   await updateTeacher(teacherForm.id, teacherForm);
+  // editGift = async () => {
+  //   const { giftForm } = this.state
+  //   await updateGift(giftForm.id, giftForm);
   //   this.setState(prevState => (
   //     {
-  //       teachers: prevState.teachers.map(teacher => {
-  //         return teacher.id === teacherForm.id ? teacherForm : teacher
+  //       gifts: prevState.gifts.map(gift => {
+  //         return gift.id === giftForm.id ? giftForm : gift
   //       }),
   //     }
   //   ))
   // }
 
-  // deleteTeacher = async (id) => {
-  //   await destroyTeacher(id);
+  // deleteGift = async (id) => {
+  //   await destroyGift(id);
   //   this.setState(prevState => ({
-  //     teachers: prevState.teachers.filter(teacher => teacher.id !== id)
+  //     gifts: prevState.gifts.filter(gift => gift.id !== id)
   //   }))
   // }
 
-  // handleFormChange = (e) => {
-  //   const { name, value } = e.target;
-  //   this.setState(prevState => ({
-  //     teacherForm: {
-  //       ...prevState.teacherForm,
-  //       [name]: value
-  //     }
-  //   }))
-  // }
+  handleFormChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      giftForm: {
+        ...prevState.giftForm,
+        [name]: value
+      }
+    }))
+  }
 
   // mountEditForm = async (id) => {
-  //   const teachers = await readAllTeachers();
-  //   const teacher = teachers.find(el => el.id === parseInt(id));
+  //   const gifts = await readAllGifts();
+  //   const gift = gifts.find(el => el.id === parseInt(id));
   //   this.setState({
-  //     teacherForm: teacher
+  //     giftForm: gift
   //   });
   // }
 
   // resetForm = () => {
   //   this.setState({
-  //     teacherForm: {
+  //     giftForm: {
   //       name: "",
-  //       photo: ""
+  //       image: "",
+  //       price: "",
+  //       product_link: ""
   //     }
   //   })
   // }
@@ -139,7 +146,7 @@ class App extends Component {
   handleLoginButton = () => {
     this.props.history.push("/login")
   }
-  
+
   handleLogin = async () => {
     const currentUser = await loginUser(this.state.authFormData);
     this.setState({ currentUser });
@@ -187,52 +194,45 @@ class App extends Component {
           login={this.state.login}
           handleRegister={this.handleRegister}
         />
- {/* -------------- If logged in, show gift lists ------------------ */}
-        {/* {
-          this.state.currentUser ? */}
+        {/* -------------- If logged in, show gift lists ------------------ */}
+        {
+          this.state.currentUser !== null ?
             <Route
               exact path="/"
               render={() => (<GiftLists gifts={this.state.gifts} />)} />
             :
             <></>
-        {/* } */}
+        }
 
-        {/* <div>
-            <Route
-              exact path="/"
-              render={() => (
-                <div>
-                  <Header
-                    verse={this.state.verse}
-                    refreshQuote={this.refreshQuote} />
-                </div>
-              )}
-            />
-          </div> */}
-        {/* <Route
-          path="/new/teacher"
+        <Route
+          path="/new/gift"
           render={() => (
-            <CreateTeacher
+            <CreateGift
               handleFormChange={this.handleFormChange}
-              teacherForm={this.state.teacherForm}
-              newTeacher={this.newTeacher} />
-          )} /> */}
-        {/* <Route
-          path="/teachers/:id"
-          render={(props) => {
-            const { id } = props.match.params;
-            const teacher = this.state.teachers.find(el => el.id === parseInt(id));
-            return <TeacherPage
-              id={id}
-              teacher={teacher}
-              handleFormChange={this.handleFormChange}
-              mountEditForm={this.mountEditForm}
-              editTeacher={this.editTeacher}
-              teacherForm={this.state.teacherForm}
-              deleteTeacher={this.deleteTeacher} />
-          }}
-        /> */}
+              giftForm={this.state.giftForm}
+              newGift={this.newGift} />
+          )} />
 
+        {this.state.currentUser &&
+          <Route
+            path="/gifts/:id"
+            render={(props) => {
+              const { id } = props.match.params;
+              const gift = this.state.gifts.find(el => el.id === parseInt(id));
+              return <GiftDetails
+                id={id}
+                gift={gift}
+              // handleFormChange={this.handleFormChange}
+              // mountEditForm={this.mountEditForm}
+              // editGift={this.editGift}
+              // giftForm={this.state.giftForm}
+              // deleteGift={this.deleteGift} 
+              />
+            }}
+          />
+        }
+
+        <Footer />
 
       </div>
     );

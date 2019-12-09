@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// const baseUrl = 'https://goodbiblewords.herokuapp.com/'
 const baseUrl = 'http://localhost:3000'
 
 const api = axios.create({
@@ -29,11 +30,20 @@ export const verifyUser = async () => {
   }
   return false
 }
-
-// export const createTeacher = async (data) => {
-//   const resp = await api.post('/teachers', { teacher: data })
-//   return resp.data
+// export const verifyUser = async () => {
+//   const token = localStorage.authToken;
+//   if (token) {
+//     api.defaults.headers.common.authorization = `Bearer ${token}`;
+//     const resp = await api.get('/auth/verify');
+//     return resp.data;
+//   }
+//   return false;
 // }
+
+export const createGift = async (data, topic_id) => {
+  const resp = await api.post('/gifts', topic_id, { gift: data })
+  return resp.data
+}
 
 // export const readAllTopics = async () => {
 //   const resp = await api.get('/topics')
@@ -54,12 +64,17 @@ export const readAllGifts = async (topic_id) => {
   return gifts
 }
 
-// export const updateTeacher = async (id, data) => {
-//   const resp = await api.put(`/teachers/${id}`, { teacher: data })
+export const readGift = async (gift_id) => {
+  const resp = await api.get(`/topics/topicId/gifts/${gift_id}`)
+  return resp.data
+}
+
+// export const updateGift = async (id, data) => {
+//   const resp = await api.put(`topics/${topic_id}/gifts/${id}`, { gift: data })
 //   return resp.data
 // }
 
-// export const destroyTeacher = async (id) => {
-//   const resp = await api.delete(`/teachers/${id}`)
+// export const destroyGift = async (id) => {
+//   const resp = await api.delete(`topics/${topic_id}/gifts/${id}`)
 //   return resp.data
 // }

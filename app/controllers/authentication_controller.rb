@@ -14,6 +14,7 @@ class AuthenticationController < ApplicationController
   
   # GET /auth/verify
   def verify
+    # @current_user = res.locals.user
     render json: @current_user, status: :ok
   end
 
@@ -24,3 +25,8 @@ class AuthenticationController < ApplicationController
     params.permit(:username, :password)
   end
 end
+
+# userRouter.get('/verify', restrict, (req, res) => {
+#   const user = res.locals.user;
+#   res.json(user);
+# })

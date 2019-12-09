@@ -18,6 +18,7 @@ class GiftsController < ApplicationController
   # POST /gifts
   def create
     @topic = Topic.find(params[:topic_id])
+    @verse = Verse.find(params[:verse_id])
     @gift = Gift.new(gift_params)
     
     if @gift.save

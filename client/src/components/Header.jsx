@@ -23,6 +23,16 @@ export default function Header(props) {
           </Link>
         }
       </nav>
+ {/* -------------- Greeting when user logged in -------------------- */}
+ <div className="greeting">
+        {props.currentUser ?
+          <>
+            <p>Hello&nbsp;{props.currentUser.username}!</p>
+          </>
+          :
+          <></>}
+      </div>
+
       {/* ---------- BIBLE VERSE SECTION -------------------------------- */}
       <div className="bible-container-wrapper">
         <div className="bible-container">
@@ -38,15 +48,6 @@ export default function Header(props) {
           }
           </div>
       </div>
-      {/* -------------- Conditional Render for Log-In/Log-Out -------------------- */}
-      <div className="greeting">
-        {props.currentUser ?
-          <>
-            <p>Hello&nbsp;{props.currentUser.username}!</p>
-          </>
-          :
-          <></>}
-      </div>
 
       {/* ------------------ Conditional Render for Log-In/ Register----------- */}
       {
@@ -58,6 +59,7 @@ export default function Header(props) {
           <>
             {props.login &&
               <div className="auth-container">
+              {props.formData &&
                 <form onSubmit={(e) => {
                   e.preventDefault();
                   props.handleLogin();
@@ -68,12 +70,14 @@ export default function Header(props) {
                   <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
                   <button>Login</button><br />
                   <p>Don't have an account?</p><br />
-                  <button onClick={props.toggleLogin}>Register</button>
+                <button onClick={props.toggleLogin}>Register</button>
                 </form>
+              }
               </div>}
 
             {!props.login &&
               <div className="auth-container">
+              {props.formData &&
                 <form onSubmit={props.handleRegister} >
                   <p>Username:</p>
                   <input name="username" type="text" value={props.formData.username} onChange={props.handleChange} />
@@ -83,6 +87,7 @@ export default function Header(props) {
                   <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
                   <button>Register</button>
                 </form>
+              }
               </div>
             }
           </>
