@@ -6,7 +6,7 @@ export default function Footer() {
     <footer>
       <p>About Us</p>
       <p>Join Us</p>
-      <img className="githubIcon" src={githubIcon} />
+      <a href="https://github.com/sheetazita/Good-Words" target="_blank"><img className="githubIcon" src={githubIcon} /></a>
       <p>&#169; 2019 Good Words</p>
     </footer>
   )

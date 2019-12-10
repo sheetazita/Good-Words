@@ -6,8 +6,8 @@ class GiftsController < ApplicationController
   # /topics/:topic_id/gifts
     def index
     @topic = Topic.find(params[:topic_id])
-      gifts = @topic.gifts
-    render json: gifts, status: :ok
+    @gifts = @topic.gifts
+    render json: @gifts, include: :topic, status: :ok
   end
 
   # GET /gifts/1
@@ -18,11 +18,9 @@ class GiftsController < ApplicationController
   # POST /gifts
   def create
     @topic = Topic.find(params[:topic_id])
-    @verse = Verse.find(params[:verse_id])
-    @gift = Gift.new(gift_params)
-    
+    @gift = @topic.gifts.new(gift_params)
     if @gift.save
-      render json: {gift: @gift}, status: :created, location: @gift
+      render json: {gift: @gift}, status: :created
     else
       render json: @gift.errors, status: :unprocessable_entity
     end
@@ -30,6 +28,8 @@ class GiftsController < ApplicationController
 
   # PATCH/PUT /gifts/1
   def update
+    @topic = Topic.find(params[:topic_id])
+    @gift = Gift.find(params[:id])
     if @gift.update(gift_params)
       render json: @gift
     else
@@ -50,6 +50,6 @@ class GiftsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def gift_params
-      params.require(:gift).permit(:name, :image, :price, :product_link)
+      params.require(:gift).permit(:name, :image, :price, :product_link, :user_id)
     end
 end

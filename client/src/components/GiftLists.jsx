@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function GiftLists(props) {
   return (

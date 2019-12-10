@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
-// import EditGift from './EditGift'
+import EditGift from './EditGift'
 import { Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import { readGift } from '../services/api-helper';
+
 
 class GiftDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isEdit: false
-      gift: {}
+      isEdit: false
     }
   }
 
-  async componentDidMount() {
-    const gift = await readGift(this.props.id)
-    this.setState({
-      gift
-    })
+  componentDidMount() {
+    this.props.mountEditForm(this.props.id)
   }
-  
+
   // async componentDidUpdate(prevProps, prevState) {
   //   if (this.state.gift_id.gift.topic_id !== prevState.gift_id.gift.topic_id) {
   //     const gift = await readGift(this.state.gift_id.gift.topic_id);
@@ -29,7 +25,7 @@ class GiftDetails extends Component {
   // }
 
   render() {
-    const { gift } = this.state;
+    const { gift } = this.props;
     return (
       <div className="giftDetailsWrapper">
         {gift === undefined ? <h2>Loading . . .</h2>
@@ -44,33 +40,36 @@ class GiftDetails extends Component {
               <Link to="/"><button>Back to Gift Lists</button></Link>
             </div>
 
-            {/* {this.state.isEdit ?
-                <Route path={'/gifts/:id/edit'} render={() => (
-                  <EditGift
-                    handleFormChange={this.props.handleFormChange}
-                    handleSubmit={(e) => {
-                      e.preventDefault();
-                      this.props.editGift();
-                      this.setState({ isEdit: false })
-                      this.props.history.push(`/gifts/${this.props.giftForm.id}`)
-                    }}
-                    giftForm={this.props.giftForm} />
-                )} />
-                :
-                <>
-                  <h1>{gift.name}</h1>
-                  <button onClick={() => {
-                    this.setState({
-                      isEdit: true
-                    })
-                    this.props.history.push(`/gifts/${gift.id}/edit`)
-                  }}>Edit</button>
+            {this.state.isEdit ?
+              <Route path={'/gifts/:id/edit'} render={() => (
+                <EditGift
+                  handleFormChange={this.props.handleFormChange}
                   
-                  <button onClick={() => {
-                    this.props.deleteGift(gift.id);
-                    this.props.history.push('/')
-                  }}>Delete</button>
-                </> */}
+                  handleSubmit={(e) => {
+                    e.preventDefault();
+                    this.props.editGift(this.props.id);
+                    this.setState({ isEdit: false })
+                    this.props.history.push(`/gifts/${this.props.id}`)
+                  }}
+                  giftForm={this.props.giftForm} />
+              )} />
+              :
+              <>
+                <div>
+                <button onClick={() => {
+                  this.setState({
+                    isEdit: true
+                  })
+                  this.props.history.push(`/gifts/${gift.id}/edit`)
+                }}>Edit</button>
+
+                <button onClick={() => {
+                  this.props.deleteGift(gift.id);
+                  this.props.history.push('/')
+                }}>Delete</button>
+                </div>
+              </>
+            }
 
           </div>)
 

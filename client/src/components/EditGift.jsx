@@ -4,14 +4,9 @@ import { withRouter } from 'react-router-dom';
 function EditGift(props) {
   return (
     <div>
-      <h3>Create a new gift</h3>
+      <h3>Edit Gft</h3>
       <form onSubmit={props.handleSubmit}>
-        <p>Photo Link:</p>
-        <input
-          type="text"
-          name="photo"
-          value={props.giftForm.photo}
-          onChange={props.handleFormChange} />
+        
         <p>Gift's name:</p>
 
         <input
@@ -19,8 +14,33 @@ function EditGift(props) {
           name="name"
           value={props.giftForm.name}
           onChange={props.handleFormChange} />
+        
+        <p>Photo Link:</p>
+        <input
+          type="text"
+          name="image"
+          value={props.giftForm.image}
+          onChange={props.handleFormChange} />
+        
+
+        <p>Price</p>
+        <input
+          type="text"
+          name="price"
+          value={props.giftForm.price}
+          onChange={props.handleFormChange} />
+        
+        <p>Product Link:</p>
+        <input
+          type="text"
+          name="product_link"
+          value={props.giftForm.product_link}
+          onChange={props.handleFormChange} />
+
+
         <button>Submit</button>
       </form>
+      
     </div>
   )
 }

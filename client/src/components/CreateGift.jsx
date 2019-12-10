@@ -38,7 +38,7 @@ function CreateGift(props) {
           <button>Submit</button>
 
       </form>
-    </div > 
+      </div > 
   )
 }
 

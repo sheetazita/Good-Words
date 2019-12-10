@@ -10,8 +10,8 @@ import Footer from './components/Footer';
 import {
   createGift,
   readRandomVerse,
-  // updateGift,
-  // destroyGift,
+  updateGift,
+  destroyGift,
   loginUser,
   registerUser,
   verifyUser,
@@ -43,6 +43,7 @@ class App extends Component {
       login: true,
     };
   }
+  
 
   toggleLogin = () => {
     this.setState(prevState => ({
@@ -59,12 +60,6 @@ class App extends Component {
     await this.refreshQuote();
     const gifts = await readAllGifts(this.state.verse.topic_id);
     this.setState({ gifts });
-
-    // const gift = await readGift(this.state.id)
-    // this.setState({
-    //   gift
-    // })
-    // console.log(gift)
 
     const currentUser = await verifyUser();
     if (currentUser) {
@@ -93,24 +88,26 @@ class App extends Component {
     }))
   }
 
-  // editGift = async () => {
-  //   const { giftForm } = this.state
-  //   await updateGift(giftForm.id, giftForm);
-  //   this.setState(prevState => (
-  //     {
-  //       gifts: prevState.gifts.map(gift => {
-  //         return gift.id === giftForm.id ? giftForm : gift
-  //       }),
-  //     }
-  //   ))
-  // }
+  editGift = async (giftId) => {
+    const { giftForm } = this.state
 
-  // deleteGift = async (id) => {
-  //   await destroyGift(id);
-  //   this.setState(prevState => ({
-  //     gifts: prevState.gifts.filter(gift => gift.id !== id)
-  //   }))
-  // }
+    const newGift = await updateGift(this.state.verse.topic_id, giftId, giftForm);
+    this.setState(prevState => (
+      {
+        gifts: prevState.gifts.map(gift => {
+          return gift.id === parseInt(giftId) ? newGift : gift
+        }),
+      }
+    ))
+  }
+
+  deleteGift = async (id) => {
+    await destroyGift(this.state.verse.topicId, id);
+    this.setState(prevState => ({
+      gifts: prevState.gifts.filter(gift =>
+        gift.id !== parseInt(id))
+    }))
+  }
 
   handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -122,24 +119,19 @@ class App extends Component {
     }))
   }
 
-  // mountEditForm = async (id) => {
-  //   const gifts = await readAllGifts();
-  //   const gift = gifts.find(el => el.id === parseInt(id));
-  //   this.setState({
-  //     giftForm: gift
-  //   });
-  // }
+  mountEditForm = async (id) => {
+    const gift = await this.state.gifts.find(el => el.id === parseInt(id));
+    const { name, image, price, product_link } = gift
+    this.setState({
+      giftForm: {
+        name,
+        image,
+        price,
+        product_link
+      }
+    });
+  }
 
-  // resetForm = () => {
-  //   this.setState({
-  //     giftForm: {
-  //       name: "",
-  //       image: "",
-  //       price: "",
-  //       product_link: ""
-  //     }
-  //   })
-  // }
 
   // -------------- AUTH ------------------
 
@@ -217,16 +209,17 @@ class App extends Component {
           <Route
             path="/gifts/:id"
             render={(props) => {
+
               const { id } = props.match.params;
               const gift = this.state.gifts.find(el => el.id === parseInt(id));
               return <GiftDetails
                 id={id}
                 gift={gift}
-              // handleFormChange={this.handleFormChange}
-              // mountEditForm={this.mountEditForm}
-              // editGift={this.editGift}
-              // giftForm={this.state.giftForm}
-              // deleteGift={this.deleteGift} 
+                handleFormChange={this.handleFormChange}
+                mountEditForm={this.mountEditForm}
+                editGift={this.editGift}
+                giftForm={this.state.giftForm}
+                deleteGift={this.deleteGift}
               />
             }}
           />
