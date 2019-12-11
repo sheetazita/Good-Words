@@ -35,25 +35,21 @@ verses = Verse.create([
   quote: "Fear not.  For I am with you.",
   location: "Isaiah 41:10",
   topic_id: 3,
-  verse_id: 1
 },
 {
   quote: "My love never fails.  My mercy is new every morning.",
   location: "Lamentations 3:22-23",
   topic_id: 1,
-  verse_id: 2
 },
 {
   quote: "I can do all things through Christ who gives me strength.",
   location: "Pilippians 4:13",
   topic_id: 5,
-  verse_id: 3
 },
 {
   quote: "Pray persistently.",
   location: "1 Thessalonians 5:17",
   topic_id: 2,
-  verse_id: 4
 }
 ])
 

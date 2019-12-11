@@ -14,6 +14,7 @@ class GiftDetails extends Component {
 
   componentDidMount() {
     this.props.mountEditForm(this.props.id)
+    console.log(this.props.mountEditForm)
   }
 
   // async componentDidUpdate(prevProps, prevState) {
@@ -27,6 +28,7 @@ class GiftDetails extends Component {
   render() {
     const { gift } = this.props;
     return (
+
       <div className="giftDetailsWrapper">
         {gift === undefined ? <h2>Loading . . .</h2>
           :
@@ -55,7 +57,7 @@ class GiftDetails extends Component {
               )} />
               :
               <>
-                <div>
+                <div className="giftDetailButtons">
                 <button onClick={() => {
                   this.setState({
                     isEdit: true

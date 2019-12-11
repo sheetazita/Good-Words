@@ -43,7 +43,7 @@ class App extends Component {
       login: true,
     };
   }
-  
+
 
   toggleLogin = () => {
     this.setState(prevState => ({
@@ -76,7 +76,7 @@ class App extends Component {
 
   newGift = async (e) => {
     e.preventDefault();
-    const gift = await createGift(this.state.giftForm);
+    const gift = await createGift(this.state.giftForm, this.state.verse.topic_id);
     this.setState(prevState => ({
       gifts: [...prevState.gifts, gift],
       giftForm: {
@@ -86,6 +86,7 @@ class App extends Component {
         product_link: ""
       }
     }))
+    this.props.history.push('/')
   }
 
   editGift = async (giftId) => {

@@ -7,34 +7,31 @@ function CreateGift(props) {
     <div className="create-form">
       <h2>Create a new gift</h2>
       <form onSubmit={props.newGift}>
-
-        <p>Gift Name</p>
+<br />
         <input
           type="text"
           name="name"
           value={props.giftForm.name}
-          onChange={props.handleFormChange} />
-        
-        <p>Image</p>
+          onChange={props.handleFormChange} placeholder="Enter gift name..."/>
+<br />        
         <input
           type="text"
           name="image"
           value={props.giftForm.image}
-          onChange={props.handleFormChange} />
-        
-        <p>Price</p>
+          onChange={props.handleFormChange} placeholder="Enter image url..."/>
+ <br />       
         <input
           type="text"
           name="price"
           value={props.giftForm.price}
-          onChange={props.handleFormChange} />
-        
-        <p>product_link</p>
+          onChange={props.handleFormChange} placeholder="Enter price..."/>
+ <br />       
         <input
           type="text"
           name="product_link"
           value={props.giftForm.product_link}
-          onChange={props.handleFormChange} />
+          onChange={props.handleFormChange} placeholder="Enter product_link..." />
+        <br />
           <button>Submit</button>
 
       </form>

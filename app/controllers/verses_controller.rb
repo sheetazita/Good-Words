@@ -16,7 +16,7 @@ class VersesController < ApplicationController
   # end
 
   def random
-    @random=rand(Verse.all.length)
+    @random = rand(Verse.all.length)
     @verse = Verse.find(rand(1..Verse.all.length))
    
     render json: @verse, include: :topic, status: :ok

@@ -81,7 +81,7 @@ export default class Header extends Component {
 
         {/* ------------------ Conditional Render for Log-In/ Register----------- */}
         
-        {
+        { !this.props.currentUser &&
           this.state.modal &&
           <div className="modalContainer">
             <div className="modal">

@@ -1,7 +1,7 @@
 class GiftsController < ApplicationController
   before_action :set_gift, only: [:show, :update, :destroy]
 
-  before_action :authorize_request, except: [:create, :index, :show]  
+  before_action :authorize_request, except: [:index, :show]  
 
   # /topics/:topic_id/gifts
     def index
@@ -19,7 +19,8 @@ class GiftsController < ApplicationController
   def create
     @topic = Topic.find(params[:topic_id])
     @gift = @topic.gifts.new(gift_params)
-    if @gift.save
+    @gift.user = @current_user
+    if @gift.save!
       render json: {gift: @gift}, status: :created
     else
       render json: @gift.errors, status: :unprocessable_entity
