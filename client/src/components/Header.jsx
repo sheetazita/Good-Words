@@ -64,21 +64,36 @@ export default class Header extends Component {
         </div>
 
         {/* ---------- BIBLE VERSE SECTION -------------------------------- */}
-        <div className="bible-container-wrapper">
-          <div className="bible-container">
-            {this.props.verse &&
-              <>
-                <div className="bible-verse">
-                  <h1>{this.props.verse.quote}</h1>
-                  <p>-&nbsp;{this.props.verse.location}&nbsp;-</p>
-                </div>
-                <br />
-                <button onClick={this.props.refreshQuote}>Get Quote</button>
-              </>
-            }
+      
+        {this.props.verse.quote ?
+          <div className="bible-container-wrapper">
+            <div className="bible-container">
+              {this.props.verse.quote &&
+                <>
+                  <div className="bible-verse">
+                    <h1>{this.props.verse.quote}</h1>
+                    <p>-&nbsp;{this.props.verse.location}&nbsp;-</p>
+                  </div>
+                  <br />
+                  <button onClick={this.props.refreshQuote}>Get Quote</button>
+                </>
+              }
+            </div>
           </div>
-        </div>
-
+          :
+          <div className="no-verse-box">
+            <div id="loading-text">
+                <div id="lettering">l</div>
+                <div className="spinner">
+                  <svg width="0" height="0"><defs>
+                    <clipPath id="d" clipPathUnits="objectBoundingBox">
+                      <path d="M0.5,0.5m-0.5,0a0.5,0.5,0,0,1,1,0,0.5,0.5,0,0,1-1,0zM0.5,0.5m-0.375,0a0.375,0.375,0,0,0,0.75,0,0.375,0.375,0,0,0-0.75,0z" />
+                    </clipPath></defs></svg>
+                </div>
+                <div id="lettering">ading</div>
+            </div>
+          </div>
+            }
         {/* ------------------ Conditional Render for Log-In/ Register----------- */}
         
         { !this.props.currentUser &&

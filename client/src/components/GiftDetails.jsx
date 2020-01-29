@@ -39,7 +39,7 @@ class GiftDetails extends Component {
               <p>${gift.price}</p>
               <a href={gift.product_link} target="_blank" rel="noopener">Love it? Purchase here!</a>
               <br />
-              <Link to="/"><button>Back to Gift Lists</button></Link>
+              <Link to="/"><button className="back-button">Back to Gift Lists</button></Link>
             </div>
 
             {this.state.isEdit ?

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const baseUrl = 'https://goodbiblewords.herokuapp.com/'
-const baseUrl = 'http://localhost:3000'
+const baseUrl = 'https://goodbiblewords.herokuapp.com/'
+// const baseUrl = 'http://localhost:3000'
 
 const api = axios.create({
   baseURL: baseUrl
@@ -60,8 +60,8 @@ export const createGift = async (data, topic_id) => {
   return resp.data.gift
 }
 
-export const updateGift = async (topicId,id, data) => {
-  const resp = await api.put(`topics/${topicId}/gifts/${id}`,  data )
+export const updateGift = async (topicId, id, data) => {
+  const resp = await api.put(`topics/${topicId}/gifts/${id}`, data)
   return resp.data
 }
 
